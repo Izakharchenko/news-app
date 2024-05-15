@@ -48,4 +48,10 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function news(Request $request, Category $category)
+    {
+        $news = $category->load('news');
+        return $news;
+    }
 }

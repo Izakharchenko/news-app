@@ -9,6 +9,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::get('/categories/{category}/news', [CategoryController::class, 'news']);
 Route::apiResources([
     'categories' => CategoryController::class,
     'news' => NewsController::class
