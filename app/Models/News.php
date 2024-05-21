@@ -21,8 +21,13 @@ class News extends Model
         'author'
     ];
 
+    public function getCategoryTitleAttribute()
+    {
+        return $this->categories->title;
+    }
+
     public function categories(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

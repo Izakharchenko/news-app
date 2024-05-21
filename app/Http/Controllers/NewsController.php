@@ -49,4 +49,10 @@ class NewsController extends Controller
     {
         //
     }
+
+    public function newsByCategory(Request $request)
+    {
+        $news = News::with('categories')->where('category_id', $request->category_id)->get();
+        return NewsResource::collection($news);
+    }
 }
