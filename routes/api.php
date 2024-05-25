@@ -11,6 +11,9 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/categories/{category}/news', [CategoryController::class, 'news'])->name('categories.news');
 Route::get('/news/categories/{category_id}', [NewsController::class, 'newsByCategory'])->name('news.category');
+Route::get('/news/pop', [NewsController::class, 'pop'])->name('news.pop');
+Route::patch('/news/{news}/increment-view-count', [NewsController::class, 'incrementViewCount'])
+    ->name('news.increase');
 Route::apiResources([
     'categories' => CategoryController::class,
     'news' => NewsController::class

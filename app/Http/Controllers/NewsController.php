@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\NewsResource;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\NewsResource;
 
 class NewsController extends Controller
 {
@@ -54,5 +55,25 @@ class NewsController extends Controller
     {
         $news = News::with('categories')->where('category_id', $request->category_id)->get();
         return NewsResource::collection($news);
+    }
+
+    public function incrementViewCount(Request $request, News $news)
+    {
+        $count = $news->increment('views');
+        $n = $news->fresh();
+        return $n->views;
+    }
+
+    public function pop(Request $request)
+    {
+        $maxViews = News::max('views');
+        $mostViewedNews = News::where('views', $maxViews)->first();
+
+        return  response()->json(
+            [
+                'title' => $mostViewedNews->title,
+                'views' => $maxViews,
+            ]
+        );
     }
 }

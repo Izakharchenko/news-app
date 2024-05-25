@@ -17,11 +17,13 @@ class NewsResource extends JsonResource
         return [
             'id' => $this->id,
             'category_id' => $this->category_id,
+            'title' => $this->title,
             'category_title' => $this->category_title,
             'body' => $this->body,
             'cover' => $this->cover,
             'source' => $this->source,
-            'author' => $this->author
+            'author' => $this->author,
+            'views' => $this->views,
         ];
     }
 }

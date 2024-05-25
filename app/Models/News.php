@@ -18,7 +18,8 @@ class News extends Model
         'cover',
         'body',
         'source',
-        'author'
+        'author',
+        'views'
     ];
 
     public function getCategoryTitleAttribute()
